@@ -1,7 +1,11 @@
+import Rooms from "../../components/Rooms/Rooms"
+
 const Home = () => {
   return (
     <div>
-      <h1>Welcome to Travel Lodge</h1>
+      {/* Category section */}
+      {/* Rooms section */}
+      <Rooms></Rooms>
     </div>
   )
 }
