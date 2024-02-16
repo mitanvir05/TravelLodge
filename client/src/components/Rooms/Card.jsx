@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const Card = ({room}) => {
     return (
         <div className='col-span-1 cursor-pointer group'>
@@ -37,7 +38,7 @@ const Card = ({room}) => {
                     5 nights . 
                 </div>
                 <div className='flex flex-row items-center gap-1'>
-                    <div className='font-semibold'>{room?.price}</div>
+                    <div className='font-semibold'>$ {room?.price}</div>
                     <div className='font-light'>night</div>
                 </div>
             </div>
