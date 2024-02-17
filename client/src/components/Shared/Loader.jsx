@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { ScaleLoader } from 'react-spinners'
+import { FadeLoader } from 'react-spinners'
 
 const Loader = ({ smallHeight }) => {
   return (
@@ -10,7 +10,7 @@ const Loader = ({ smallHeight }) => {
       justify-center 
       items-center `}
     >
-      <ScaleLoader size={100} color='red' />
+      <FadeLoader size={100} color='red' />
     </div>
   )
 }
