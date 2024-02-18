@@ -6,3 +6,5 @@ const axiosSecure = axios.create({
 })
 
 export default axiosSecure
+
+

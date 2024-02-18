@@ -1,21 +1,23 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-undef */
-import {formatDistance } from "date-fns";
-import Button from "../Button/Button";
-import Calender from "./Calender";
-import { useState } from "react";
+import { useState, useEffect } from 'react';
+import {  formatDistance } from 'date-fns';
+import Button from '../Button/Button';
+import Calender from './Calender';
 
 const RoomReservation = ({ room }) => {
-    //price calculate
-    //totalprice = totaldays*price
-    
-    const [value,setValue]=useState({
-        startdate: new Date(room?.from),
-        endate: new Date(room?.to),
-        key:'selection'
-    })
+  const [value, setValue] = useState({
+    startDate: room?.from ? new Date(room.from) : null,
+    endDate: room?.to ? new Date(room.to) : null,
+    key: 'selection',
+  });
 
-    const totalDays = parseInt(formatDistance(new Date(room?.to), new Date(room?.from)))
+  useEffect(() => {
+    console.log('startDate:', value.startDate);
+    console.log('endDate:', value.endDate);
+  }, [value]);
+
+  const totalDays = parseInt(formatDistance(new Date(room?.to), new Date(room?.from)).split(' ')[0])
     const totalPrice = totalDays * room?.price;
 
     return (
