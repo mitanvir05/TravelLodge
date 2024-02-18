@@ -16,3 +16,10 @@ export const getToken =async email =>{
    console.log("Token recieved from server",data);
    return data
 }
+
+//  clear token
+
+export const clearCookie =async () =>{
+   const { data } = await axiosSecure.get('/logout')
+   return data
+}
