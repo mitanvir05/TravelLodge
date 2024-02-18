@@ -109,6 +109,14 @@ async function run() {
       res.send(result)
     })
 
+    //save room in database
+
+    app.post('/rooms',verifyToken,async(req,res)=>{
+      const room = req.body
+      const result = await roomsCollecton.insertOne(room)
+      res.send(result)
+    })
+
 
 
     // Send a ping to confirm a successful connection
