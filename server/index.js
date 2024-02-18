@@ -3,7 +3,7 @@ const app = express()
 require('dotenv').config()
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-const { MongoClient, ServerApiVersion } = require('mongodb')
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
 const jwt = require('jsonwebtoken')
 const morgan = require('morgan')
 const port = process.env.PORT || 8000
@@ -44,6 +44,7 @@ const client = new MongoClient(process.env.DB_URI, {
 async function run() {
   try {
     const usersCollection = client.db('travelLodgeDb').collection('users')
+    const roomsCollecton = client.db('travelLodgeDb').collection('rooms')
     // auth related api
     app.post('/jwt', async (req, res) => {
       const user = req.body
@@ -94,6 +95,21 @@ async function run() {
       )
       res.send(result)
     })
+
+    //Get all rooms
+    app.get('/rooms', async(req,res)=>{
+      const result =await roomsCollecton.find().toArray()
+      res.send(result)
+    })
+
+    //get single room data
+    app.get('/room/:id', async(req,res)=>{
+      const id = req.params.id
+      const result =await roomsCollecton.findOne({_id: new ObjectId(id)})
+      res.send(result)
+    })
+
+
 
     // Send a ping to confirm a successful connection
     await client.db('admin').command({ ping: 1 })

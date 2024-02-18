@@ -4,17 +4,17 @@ import Container from "../Shared/Container";
 import { useSearchParams } from "react-router-dom";
 import Heading from "../Shared/Heading";
 import Loader from "../Shared/Loader";
+import { getAllRooms } from "../../api/rooms";
 
 const Rooms = () => {
     const [params, setParams] = useSearchParams()
     const category = params.get('category')
     const [rooms, setRooms] = useState([]);
-    const[loading,setLoading]=useState(false)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         setLoading(true)
-        fetch('./rooms.json')
-            .then(res => res.json())
+        getAllRooms()        
             .then(data => {
                 if (category) {
                     const filtered = data.filter(room => room.category === category)
@@ -25,7 +25,7 @@ const Rooms = () => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [category]);
-    if(loading) return <Loader/>
+    if (loading) return <Loader />
     return (
         <Container>
             {rooms && rooms.length > 0 ? (<div className="pt-12 grid grid-cols-1 sm:grid-cols-2 
