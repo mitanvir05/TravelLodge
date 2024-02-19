@@ -10,9 +10,9 @@ import { AiOutlineBars } from 'react-icons/ai'
 import { BsGraphUp } from 'react-icons/bs'
 import useAuth from '../../../hooks/useAuth'
 import useRole from '../../../hooks/useRole'
-import HostMenu from './HostMenu'
-import GuestMenu from './GuestMenu'
-import AdminMenu from './AdminMenu'
+import HostMenu from '../Menu/HostMenu'
+import GuestMenu from '../Menu/GuestMenu'
+import AdminMenu from '../Menu/AdminMenu'
 
 
 const Sidebar = () => {
