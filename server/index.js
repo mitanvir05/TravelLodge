@@ -175,8 +175,8 @@ async function run() {
     //get all bookings for guest
     app.get('/bookings', verifyToken, async (req, res) => {
       const email = req.query.email
-      if(!email) return res.send([])
-      const query= {'guest.email':email}
+      if (!email) return res.send([])
+      const query = { 'guest.email': email }
       const result = await bookingsCollecton.find(query).toArray()
       res.send(result)
 
@@ -184,11 +184,17 @@ async function run() {
     //get all bookings for host
     app.get('/bookings/host', verifyToken, async (req, res) => {
       const email = req.query.email
-      if(!email) return res.send([])
-      const query= {host:email}
+      if (!email) return res.send([])
+      const query = { host: email }
       const result = await bookingsCollecton.find(query).toArray()
       res.send(result)
 
+    })
+
+    //get al users 
+    app.get('/users', verifyToken, async (req, res) => {
+      const result = await usersCollection.find().toArray()
+      res.send(result)
     })
 
 
