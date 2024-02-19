@@ -1,22 +1,18 @@
-import { BsFillHouseAddFill } from "react-icons/bs";
-import MenuItem from "./Menuitem";
-import { MdOutlineManageHistory } from "react-icons/md";
-
+import { BsFillHouseAddFill } from 'react-icons/bs'
+import { MdHomeWork, MdOutlineManageHistory } from 'react-icons/md'
+import MenuItem from './Menuitem'
 const HostMenu = () => {
-    return (
-        <>
-            <MenuItem
-                icon={BsFillHouseAddFill}
-                label='Add Room'
-                address='add-room'
-            />
-            <MenuItem
-                icon={MdOutlineManageHistory}
-                label='My Listings'
-                address='my-listings'
-            />
-        </>
-    );
-};
+  return (
+    <>
+      <MenuItem icon={BsFillHouseAddFill} label='Add Room' address='add-room' />
+      <MenuItem icon={MdHomeWork} label='My Listings' address='my-listings' />
+      <MenuItem
+        icon={MdOutlineManageHistory}
+        label='Manage Bookings'
+        address='manage-bookings'
+      />
+    </>
+  )
+}
 
-export default HostMenu;
+export default HostMenu
