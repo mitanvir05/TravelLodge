@@ -7,9 +7,8 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
 const jwt = require('jsonwebtoken')
 const morgan = require('morgan')
 const port = process.env.PORT || 8000
-
-
 const stripe = require('stripe')(process.env.PAYMENT_SECRET_KEY)
+const nodemailer = require('nodemailer')
 
 // middleware
 const corsOptions = {
@@ -36,6 +35,29 @@ const verifyToken = async (req, res, next) => {
     next()
   })
 }
+//send email
+const sendEmail = () => {
+  //create transporter
+  const transporter = nodemailer.createTransport({
+    service:'gmail',
+    host:'smtp.gmail.com',
+    port:587,
+    secure:false,
+    auth:{
+      user: process.env.USER,
+      pass: process.env.PASS,
+    },
+  })
+  // verify connection
+  transporter.verify((error, success)=>{
+    if(error){
+      console.log(error);
+    }else{
+      console.log("Server ready to send email",success );
+    }
+  })
+}
+
 
 const client = new MongoClient(process.env.DB_URI, {
   serverApi: {
@@ -45,6 +67,7 @@ const client = new MongoClient(process.env.DB_URI, {
   },
 })
 async function run() {
+  sendEmail()
   try {
     const usersCollection = client.db('travelLodgeDb').collection('users')
     const roomsCollecton = client.db('travelLodgeDb').collection('rooms')
