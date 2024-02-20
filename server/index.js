@@ -49,6 +49,25 @@ async function run() {
     const usersCollection = client.db('travelLodgeDb').collection('users')
     const roomsCollecton = client.db('travelLodgeDb').collection('rooms')
     const bookingsCollecton = client.db('travelLodgeDb').collection('bookings')
+    //role verificatin moiddlewares
+    //for admins
+    const verifyAdmin = async (req, res, next) => {
+      const user = req.user
+      const query = { email: user?.email }
+      const result = await usersCollection.findOne(query)
+      if (!result || result?.role !== 'admin') return res.status(401).send({ message: 'Unauthorized access' })
+      next()
+    }
+    //for hosts
+    const verifyHost = async (req, res, next) => {
+      const user = req.user
+      const query = { email: user?.email }
+      const result = await usersCollection.findOne(query)
+      if (!result || result?.role !== 'host') return res.status(401).send({ message: 'Unauthorized access' })
+      next()
+    }
+
+
     // auth related api
     app.post('/jwt', async (req, res) => {
       const user = req.body
@@ -96,7 +115,7 @@ async function run() {
             {
               $set: user
             },
-              options
+            options
           )
           return res.send(result)
 
@@ -128,7 +147,7 @@ async function run() {
     })
 
     //get rooms for host
-    app.get('/rooms/:email', async (req, res) => {
+    app.get('/rooms/:email', verifyToken, verifyHost, async (req, res) => {
       const email = req.params.email
       const result = await roomsCollecton.find({ 'host.email': email }).toArray()
       res.send(result)
@@ -196,7 +215,7 @@ async function run() {
 
     })
     //get all bookings for host
-    app.get('/bookings/host', verifyToken, async (req, res) => {
+    app.get('/bookings/host', verifyToken, verifyHost, async (req, res) => {
       const email = req.query.email
       if (!email) return res.send([])
       const query = { host: email }
@@ -206,7 +225,7 @@ async function run() {
     })
 
     //get all users 
-    app.get('/users', verifyToken, async (req, res) => {
+    app.get('/users', verifyToken, verifyAdmin, async (req, res) => {
       const result = await usersCollection.find().toArray()
       res.send(result)
     })
@@ -225,12 +244,6 @@ async function run() {
       const result = await usersCollection.updateOne(query, updateDoc, options)
       res.send(result)
     })
-
-    //become a host
-    app.patch
-
-
-
 
     // Send a ping to confirm a successful connection
     await client.db('admin').command({ ping: 1 })
