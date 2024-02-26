@@ -9,13 +9,18 @@ const morgan = require('morgan')
 const port = process.env.PORT || 8000
 const stripe = require('stripe')(process.env.PAYMENT_SECRET_KEY)
 const nodemailer = require('nodemailer')
-
 // middleware
 const corsOptions = {
-  origin: ['http://localhost:5173', 'http://localhost:5174'],
+  origin: ['http://localhost:5173', 'http://localhost:5174','https://travel-lodge-5a0c6.web.app'],
   credentials: true,
   optionSuccessStatus: 200,
 }
+app.use(
+  cors({
+  credentials: true, // Allow credentials (cookies, HTTP authentication)
+  origin: ['https://travel-lodge-5a0c6.web.app'],
+  }),
+  );
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use(cookieParser())
@@ -57,7 +62,6 @@ const sendEmail = () => {
     }
   })
 }
-
 
 const client = new MongoClient(process.env.DB_URI, {
   serverApi: {
@@ -269,10 +273,10 @@ async function run() {
     })
 
     // Send a ping to confirm a successful connection
-    await client.db('admin').command({ ping: 1 })
-    console.log(
-      'Pinged your deployment. You successfully connected to MongoDB!'
-    )
+    // await client.db('admin').command({ ping: 1 })
+    // console.log(
+    //   'Pinged your deployment. You successfully connected to MongoDB!'
+    // )
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
