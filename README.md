@@ -21,13 +21,13 @@
 
 Welcome to Travel Lodge, your ultimate destination for seamless and personalized travel experiences! Our innovative hotel booking platform offers a trifecta of functionalities catering to every type of user: guests, hosts, and administrators.
 
-- Admin
+- Admin : 
 As the backbone of Travel Lodge, administrators have access to a comprehensive profile section where they can manage and oversee the entire platform. From user registrations to monitoring they can make and user to admin or host .
 
-- Hosts
+- Hosts : 
 For property owners looking to showcase their spaces, Travel Lodge provides an easy-to-use hosting platform. Hosts can effortlessly add and manage their rooms, upload captivating images, and set competitive pricing. The profile section allows hosts to showcase their hospitality prowess, attracting guests and building a stellar reputation within the Travel Lodge community.
 
-- Guests
+- Guests : 
 As a guest, you have the freedom to explore and book a variety of accommodations tailored to your preferences. Simply log in to your guest account, browse through an extensive list of rooms, and make secure payments for a hassle-free booking experience. Your personalized profile keeps track of your booking history and preferences, ensuring each stay is tailored to your liking.
 
 ## Features
