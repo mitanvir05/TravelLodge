@@ -69,7 +69,7 @@ As a guest, you have the freedom to explore and book a variety of accommodations
 
 ![App Screenshot](https://i.ibb.co/kX9kh6F/add-room-host.png)
 
-![App Screenshot](https://i.ibb.co/xLsjPpK/list-host.png)
+![App Screenshot](https://i.ibb.co/xHKyPgM/2.png)
 
 
 - Guest Dashboard
