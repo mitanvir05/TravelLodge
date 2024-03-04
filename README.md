@@ -17,7 +17,7 @@
 - email : huest@gmail.com
 - pass: 123456789
 
-# Travel Lodge: Your Gateway to Seamless Stay Experiences
+# Travel Lodge-Your Simple Solution for Hassle Free Stays
 
 Welcome to Travel Lodge, your ultimate destination for seamless and personalized travel experiences! Our innovative hotel booking platform offers a trifecta of functionalities catering to every type of user: guests, hosts, and administrators.
 
